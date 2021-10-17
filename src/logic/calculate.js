@@ -7,17 +7,20 @@ function isNumber(item, modeSwitch) {
 
 function deleteOneDigit(digit){
   if(digit.length > 1){
-    return digit.substring(0, digit.length - 1)
+    return digit.substring(0, digit.length - 1);
   }
   else{
-    return '0'
+    return '0';
   }
 }
 
 export default function calculate(obj, buttonName, modeSwitch) {
   if (buttonName === 'back') {
     if(obj.next){
-      return {next: deleteOneDigit(obj.next)}
+      return {next: deleteOneDigit(obj.next)};
+    }
+    else{
+      return {next: null};
     }
   }
   if (buttonName === 'AC') {
@@ -31,6 +34,9 @@ export default function calculate(obj, buttonName, modeSwitch) {
   if (isNumber(buttonName, modeSwitch)) {
     if (buttonName === '0' && obj.next === '0') {
       return {};
+    }
+    if (obj.next === '0'){
+      return { next: buttonName };
     }
     if (obj.operation) {
       if (obj.next) {
